@@ -5,28 +5,56 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+// function Login_Page() {
+//   // Define state variables for form input values
+//   const [values, setValues] = useState({
+//     student_ID: '',
+//     password: '',
+//   });
+
+//   // Handle form input changes
+//   const navigate = useNavigate();
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     axios.post('http://localhost:8081/login', values)
+//       .then((res) => {
+//         if (res.data.Status === "Success") {
+//           navigate('/dashboard'); // Change the route to your dashboard page
+//         } else {
+//           alert("Error");
+//         }
+//       })
+//       .catch(err => console.error(err)); // Use .catch to handle errors
+//   };
+// import React, { useState } from 'react'
+// // import './style.css'
+// import axios from 'axios'
+// import { useNavigate } from 'react-router-dom'
+
 function Login_Page() {
-  // Define state variables for form input values
-  const [values, setValues] = useState({
-    email: '',
-    password: '',
-  });
 
-  // Handle form input changes
-  const navigate = useNavigate();
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    })
+    const navigate = useNavigate()
+    axios.defaults.withCredentials = true;
+    const [error, setError] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios.post('http://localhost:8081/login', values)
-      .then((res) => {
-        if (res.data.Status === "Success") {
-          navigate('/dashboard'); // Change the route to your dashboard page
-        } else {
-          alert("Error");
-        }
-      })
-      .catch(err => console.error(err)); // Use .catch to handle errors
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:8081/login', values)
+        .then(res => {
+            if(res.data.Status === 'Success') {
+                navigate('/');
+            } else {
+                setError(res.data.Error);
+            }
+        })
+        .catch(err => console.log(err));
+    }
+
 
   return (
     <div className="Login_Page"> {/* Removed the extra enclosing <> */}
