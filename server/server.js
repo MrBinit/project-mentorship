@@ -2,7 +2,9 @@ import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
 import bcrypt from 'bcrypt'; // Import only bcrypt
-import cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser'
+import jwt from 'jsonwebtoken';
+const salt = 10;
 
 const app = express();
 app.use(express.json());
@@ -18,17 +20,15 @@ const db = mysql.createConnection({
 
 // Handle POST request for user registration
 app.post('/register', (req, res) => {
-  const sql = "INSERT INTO login (name, email, password) VALUES (?, ?, ?)";
+  const sql = "INSERT INTO `login` (`name`, `email`, `password`) VALUES (?)";
 
   // Hash the password using bcrypt
-  bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
-    if (err) {
-      return res.json({ error: 'Error hashing password' });
-    }
+  bcrypt.hash(req.body.password.toString(), salt, (err, hash) => {
+    if (err) return res.json({ error: 'Error hashing password' });
 
     const values = [req.body.name, req.body.email, hash];
 
-    db.query(sql, values, (err, result) => {
+    db.query(sql, [values], (err, result) => {
       if (err) {
         return res.json({ error: 'Error inserting data in the server' });
       }

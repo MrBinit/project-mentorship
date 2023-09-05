@@ -17,10 +17,9 @@ function Register() {
         if(res.data.status === "Success"){
             navigate('/login')
         }else{
-            alert("Error")
+            alert(res.data.error)
         }
-      } )
-      .then(err => console.log(err));
+      } );
 
   }
 
@@ -30,7 +29,7 @@ function Register() {
         <h2>Sign-Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor = "name"><strong></strong></label>
+            <label htmlFor = "name"><strong>Name</strong></label>
             <input type = 'text' placeholder = 'Enter Name' name='name'
                 onChange = {e => setValues({...values, name: e.target.value})} className = 'form-control rounded-0' />
 
