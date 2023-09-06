@@ -56,15 +56,15 @@ import express from 'express'
 import mysql from 'mysql'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
-//import multer from 'multer'
-import path from 'path'
+// import bcrypt from 'bcrypt'
+// import jwt from 'jsonwebtoken'
+// //import multer from 'multer'
+// import path from 'path'
 
 const app = express();
 app.use(cors(
     {
-        origin: ["http://localhost:5173"],
+        origin: ["http://localhost:5175"],
         methods: ["POST", "GET", "PUT"],
         credentials: true
     }
@@ -178,7 +178,7 @@ const con = mysql.createConnection({
 // })
 
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM users Where student_ID = ? AND  password = ?";
+    const sql = "SELECT * FROM users Where student_ID = ? AND  Password = ?";
     con.query(sql, [req.body.student_ID, req.body.password], (err, result) => {
         if(err) return res.json({Status: "Error"})//, Error: "Error in runnig query"});
         if(result.length > 0) {

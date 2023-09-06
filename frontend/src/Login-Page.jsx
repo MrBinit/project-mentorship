@@ -35,7 +35,7 @@ import axios from 'axios';
 function Login_Page() {
 
     const [values, setValues] = useState({
-        email: '',
+        studentID: '',
         password: ''
     })
     const navigate = useNavigate()
@@ -44,9 +44,13 @@ function Login_Page() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8081/login', values)
+        axios.post('http://localhost:8081/login', {
+          student_ID: values.studentID,
+          password: values.password
+        })
         .then(res => {
             if(res.data.Status === 'Success') {
+              alert("success")
                 navigate('/');
             } else {
                 setError(res.data.Error);
@@ -79,11 +83,11 @@ function Login_Page() {
           </ul>
         </div>
         <img src={login} alt="Login" />
-        <input
+        <input type="text"
           className="Input"
-          placeholder="Email" // Changed placeholder text to "Email"
+          placeholder="student_ID" // Changed placeholder text to "Email"
           value={values.email} // Use values.email for input value
-          onChange={(e) => setValues({ ...values, email: e.target.value })} // Update email value
+          onChange={(e) => setValues({ ...values, studentID: e.target.value })} // Update email value
         />
         <input
           className="Input"
