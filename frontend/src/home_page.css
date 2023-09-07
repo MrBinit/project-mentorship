@@ -1,0 +1,164 @@
+body {
+  background-color: #f3e0d7;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.Home_page {
+  text-align: center;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.Canteen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #d84a16;
+}
+
+.Kings_Canteen,
+.Grab_a_bite {
+  font-size: 36px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.Nav_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #33333378;
+  color: white;
+  padding: 10px;
+}
+
+.Nav_bar div {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.Cart_icon,
+.Logout_icon {
+  cursor: pointer;
+}
+
+.Menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  padding: 20px;
+  background-color: #f3e0d7;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.All_Menu {
+  text-align: center;
+  background-color: #f3e0d7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  border: none;
+  padding: 0;
+}
+
+.All_Menu img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.All_Menu h1 {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #f3e0d7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Add_to_Cart button {
+  background-color: #ff6b38 !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  border-radius: 5px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+  border: none !important;
+  margin-top: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+}
+
+.Add_to_Cart button:hover,
+.Add_to_Cart .cart-link {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.Pagination button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.Pagination button:hover {
+  background-color: #555;
+}
+
+.All_Menu .btn.decrement {
+  background-color: #ff6b38;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.All_Menu .btn.increment {
+  background-color: #d84a16;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quantity {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  color: #444444;
+  font-size: 16px;
+  vertical-align: middle;
+  padding-right: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .Menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .Menu {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
