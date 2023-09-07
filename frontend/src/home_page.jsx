@@ -1,284 +1,271 @@
-import React, { useState } from "react";
-import Kings_logo from './Images/kings_logo.png'
-import MomoImage from './Images/momo.png'
-import VegMomoImage from './Images/veg_momo.png'
-import CheeseToastImage from './Images/Cheese_Toast.png'
-import ChanaaImage from './Images/Channa.png'
-import AlooChopImage from './Images/AlooChopImage.png'
-import PakaudaImage from './Images/pakaudaa.png'
-import ChickenFriedRiceImage from './Images/Chicken-Fried-Rice.png'
-import VegFriedRiceImage from './Images/vegfriedrice.png'
-import ChickenSandwichImage from './Images/shredded-chicken-sandwich-removebg-preview.png'
-import VegSandwichImage from './Images/Vegetable-Sandwich.png'
-import VegChowminImage from './Images/vegetable-chowmin.png'
-import ChickenChowminImage from './Images/chicken-chowmin.png'
-import BoilEggImage from './Images/BoilEgg.png'
-import OmletteImage from './Images/omlette.png'
-import MixFruitsImage from './Images/Mix-Fruits.png'
-import CoffeeImage from './Images/coffee.png'
-import MilkTeaImage from './Images/MilkTea.png'
-import BlackTeaImage from './Images/BlackTea.png'
-import GreenTeaImage from './Images/GreenTea.png'
-import HotLemonImage from './Images/Hot_Lemon.png'
-import JuiceImage from './Images/Juice.png'
+import React, { useState, useEffect } from "react";
+import KingsLogo from './Images/kings_logo.png';
+import LogoutLogo from './Images/log-out.png';
 import { Link } from 'react-router-dom';
-
+import CartLogo from './Images/Cart_icon.png';
+import './Home_Page.css';
 
 function Home_Page() {
-  const [show, setShow] = useState(true)
-
-  const [count, setCount] = useState(1)
+  const [currentCategory, setCurrentCategory] = useState("All");
+  const [itemCounts, setItemCounts] = useState({});
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [Menu] = useState([
     {
       title: 'Chicken Momo',
-      Image: MomoImage,
+      Image: '/src/Images/momo.png',
       type: 'non-veg',
     },
     {
       title: 'Veg Momo',
-      Image: VegMomoImage,
+      Image: '/src/Images/veg_momo.png',
       type: 'veg',
-
+  
     },
     {
-
+  
       title: 'Cheese toast',
-      Image: CheeseToastImage,
+      Image: '/src/Images/Cheese_Toast.png',
       type: 'veg',
-
-
+  
+  
     },
     {
       title: 'Chanaa',
-      Image: ChanaaImage,
+      Image: '/src/Images/Channa.png',
       type: 'veg',
-
-
+  
+  
     },
     {
       title: 'Aloo Chop',
-      Image: AlooChopImage,
+  
+      Image: '/src/Images/AlooChopImage.png',
       type: 'veg',
-
-
+  
+  
     },
     {
       title: 'Veg Pakauda',
-      Image: PakaudaImage,
+  
+      Image: '/src/Images/pakaudaa.png',
       type: 'veg',
-
+  
     },
     {
       title: 'Chicken Fried Rice',
-      Image: ChickenFriedRiceImage,
+  
+      Image: '/src/Images/Chicken-Fried-Rice.png',
       type: 'non-veg',
-
-
-
+  
+  
+  
     },
     {
       title: 'Veg Fried Rice',
-      Image: VegFriedRiceImage,
+      Image: '/src/Images/vegfriedrice.png',
       type: 'veg',
-
-
+  
+  
     },
     {
       title: 'Chicken Sandwich',
-      Image: ChickenSandwichImage,
+      Image: '/src/Images/shredded-chicken-sandwich-removebg-preview.png',
       type: 'non-veg',
-
+  
     },
     {
       title: 'Veg Sandwich',
-      Image: VegSandwichImage,
+      Image: '/src/Images/Vegetable-Sandwich.png',
       type: 'veg',
-
+  
     },
-
+  
     {
       title: 'Veg Chowmin',
-      Image: VegChowminImage,
+      Image: '/src/Images/vegetable-chowmin.png',
       type: 'veg',
-
+  
     },
     {
       title: 'Chicken Chowmin',
-      Image: ChickenChowminImage,
+      Image: '/src/Images/chicken-chowmin.png',
       type: 'non-veg',
-
-
+  
+  
     },
     {
       title: 'Boil Egg',
-      Image: BoilEggImage,
+      Image: '/src/Images/BoilEgg.png',
       type: 'non-veg',
-
-
+  
+  
     },
     {
       title: 'Omlette',
-      Image: OmletteImage,
+      Image: '/src/Images/omlette.png',
       type: 'non-veg',
-
-
+  
+  
     },
     {
       title: 'Mix Fruits',
-      Image: MixFruitsImage,
+      Image: '/src/Images/Mix-Fruits.png',
       type: 'veg',
-
-
+  
+  
     },
     {
       title: 'Coffee',
-      Image: CoffeeImage,
+      Image: '/src/Images/coffee.png',
       type: 'drinks',
-
-
+  
+  
     },
     {
       title: 'Milk Tea',
-      Image: MilkTeaImage,
+      Image: '/src/Images/MilkTea.png',
       type: 'drinks',
-
-
+  
+  
     },
     {
       title: 'Black Tea',
-      Image: BlackTeaImage,
+      Image: '/src/Images/BlackTea.png',
       type: 'drinks',
-
-
+  
+  
     },
     {
       title: 'Green Tea',
-      Image: GreenTeaImage,
+      Image: '/src/Images/GreenTea.png',
       type: 'drinks',
-
+  
     },
     {
       title: 'Hot Lemon',
-      Image: HotLemonImage,
+      Image: '/src/Images/Hot_Lemon.png',
       type: 'drinks',
-
+  
     },
     {
       title: 'Juice',
-      Image: JuiceImage,
+      Image: '/src/Images/Juice.png',
       type: 'drinks',
-
+  
     },
   ])
-  const Increment = () => {
-    setCount(count + 1)
-  }
 
-  const Decrement = () => {
-    if (count > 1) {
-      setCount(count - 1)
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [currentCategory]);
+
+  const incrementItem = (title) => {
+    setItemCounts((prevCounts) => ({
+      ...prevCounts,
+      [title]: (prevCounts[title] || 0) + 1,
+    }));
+  };
+
+  const decrementItem = (title) => {
+    setItemCounts((prevCounts) => {
+      const newCounts = { ...prevCounts };
+      if (newCounts[title] > 0) {
+        newCounts[title] -= 1;
+      }
+      return newCounts;
+    });
+  };
+
+  const filterMenuByCategory = (category) => {
+    if (category === "All") {
+      return Menu;
+    } else {
+      return Menu.filter((item) => item.type === category);
     }
-  }
+  };
 
-  const showNonVeg =() =>
-  {
-    setShow(false)
-   
-  }
+  const paginatedMenu = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filterMenuByCategory(currentCategory).slice(startIndex, endIndex);
+  };
 
-  const showVeg =() =>
-  {
-    setShow(false)
-   
-  }
+  const totalPages = Math.ceil(filterMenuByCategory(currentCategory).length / itemsPerPage);
 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
-  const showJuice =() =>
-  {
-    setShow(false)
-   
-  }
-
-
-  
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
-    <>
-
-      <div className="Home_page">
-
-        <div className="Canteen">
-          <div className="Kings_Canteen">
-            <h1> King's</h1>
-            <h1>Canteen</h1>
-          </div>
-          <div className="Grab_a_bite">
-            <h1> <i>grab a</i></h1>
-            <h1> <i>bite!</i></h1>
-          </div>
-
-
+    <div className="Home_page">
+      <div className="Container">
+        <div className="Nav_bar">
+        <a href="">
+            <img src={KingsLogo} height={60} width={40} alt="Kings Logo" />
+          </a>
+          <div className="Nav_item" onClick={() => setCurrentCategory("All")}>All</div>
+          <div className="Nav_item" onClick={() => setCurrentCategory("non-veg")}>Non-Veg</div>
+          <div className="Nav_item" onClick={() => setCurrentCategory("veg")}>Veg</div>
+          <div className="Nav_item" onClick={() => setCurrentCategory("drinks")}>Drinks</div>
+          <img className="Cart_icon" src={CartLogo} height={55} alt="Cart" />
+          <img className="Logout_icon" src={LogoutLogo} height={90} alt="Logout" />
         </div>
-        <div className="Container">
-          <div className="Nav_bar">
-            <img src={Kings_logo} />
-            <a className="All" onClick={()=>setShow(true)}>All</a>
-            <a className="Non-veg" onClick={showNonVeg}>Non-Veg</a>
-            <a className="Veg" onClick={showVeg}>Veg</a>
-            <a className="Drinks" onClick={showJuice}>Drinks</a>
-          </div>
 
-{
-  show &&
-          <div className="Menu">
-            {Menu.map((All_Menu, i) => (
-              
-              <div key={i} className="All_Menu">
-             
-                <img src={All_Menu.Image} height={150} width={150} />
-
-                <h1>{All_Menu.title}</h1>
-
-                <div className="items">
-                  <div className="quant">
-
-                    <div className="btn" onClick={Decrement}>-</div>
-                    <div>{count}</div>
-
-
-                    <div className="btn" onClick={Increment}>+</div>
-                  </div>
-                  <div className="price">Rs</div>
+        <div className="Menu">
+          {paginatedMenu().map((item, index) => (
+            <div key={index} className="All_Menu">
+              <img src={item.Image} alt={item.title} />
+              <h1>{item.title}</h1>
+              <div className="items">
+                <div className="quant">
+                <div className="quant">
+                  <button className="btn decrement" onClick={() => decrementItem(item.title)}>-</button>
+                  <span className="quantity">{itemCounts[item.title] || 0}</span>
+                  <button className="btn increment" onClick={() => incrementItem(item.title)}>+</button>
                 </div>
-                
-                <button className="Add_to_Cart"> 
-                <ul>
-                    <li>
-                      <Link to="./cart"> Add to Cart</Link>
-                    </li>
-                  </ul>
-                  </button>
 
-                 
-                  
+                </div>
+                <div className="price">Rs</div>
               </div>
-            ))}
-          </div>
-
-}
-
+              <div className="Add_to_Cart">
+                <button>
+                  <Link to="/cart" className="cart-link">Add to Cart</Link>
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-
-
-
-
-
-
-
+        <div className="StyledDivider"></div>
+        <div className="Pagination">
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>Prev</button>
+          <span>{`Page ${currentPage} of ${totalPages}`}</span>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
+        </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
 export default Home_Page;
+
+
+
+
+
+
+
+
+
+
+
+
